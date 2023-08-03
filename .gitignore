@@ -1,0 +1,6 @@
+### normal
+
+# IntelliJ project files
+.idea\
+*.iml\
+target

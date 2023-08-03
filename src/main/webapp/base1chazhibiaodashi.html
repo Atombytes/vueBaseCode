@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>快速入门-插值表达式</title>
+    <script src="js/vuejs-2.5.16.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--data数据直接输出-->
+        {{msg}}
+        <hr/>
+        <!--数学运算-->
+        {{num/10}}
+        <hr/>
+        {{num*3.14}}
+        <hr/>
+        <!--逻辑运算 支持三目运算-->
+        {{num>0?"this is a positive number":"this is a negative number"}}
+        <hr/>
+        <!--data数据再次赋值 此时上述使用到num的插值表达式输出内容auto update-->
+        {{num=1}}
+        <!--不支持变量声明以及if判断表达式等-->
+        <hr/>
+        <!--{{var num = 1;}}-->
+        <hr/>
+        <!--{{if(num>0){"positive number"}}-->
+        <!--上述俩插值表达式 报错Error compiling template-->
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            msg:'this is a vue message!',
+            num:100
+        },
+        methods:{
+
+        }
+    });
+
+</script>
+</html>

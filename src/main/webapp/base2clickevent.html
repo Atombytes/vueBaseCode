@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on:click</title>
+    <script src="js/vuejs-2.5.16.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <hr/>
+        <button v-on:click="msgClick('show some message')">信息按钮</button>
+        <button v-on:click="buttonClick($event)">事件按钮</button>
+        <hr/>
+        <!--v-on:click 关联语法糖@click-->
+        <button @click="yufatangClick('this is @')">@按钮</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            message:"this is a vue click event!"
+        },
+        methods:{
+            msgClick:function(msg) {
+                console.log(msg);
+                this.message = msg;
+            },
+            buttonClick:function (event){
+                console.log(this.message);
+                console.log(this.$el)//DOM
+                console.log(event);//PointerEvent
+            },
+            yufatangClick:function (yufatang){
+                console.log(yufatang);
+            }
+        }
+    });
+</script>
+</html>

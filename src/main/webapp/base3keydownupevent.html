@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on:keydown、keyup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .search {
+            position: relative;
+            width: 178px;
+            margin: 100px;
+        }
+
+
+        .convue {
+            display: none;
+            position: absolute;
+            top: -40px;
+            width: 171px;
+            border: 1px solid rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+            padding: 5px 0;
+            font-size: 18px;
+            line-height: 20px;
+            color: #333;
+        }
+
+        .convue::before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 28px;
+            left: 18px;
+            border: 8px solid #000;
+            border-style: solid dashed dashed;
+            border-color: #fff transparent transparent;
+        }
+
+
+        /*.con {*/
+        /*    display: none;*/
+        /*    position: absolute;*/
+        /*    top: -40px;*/
+        /*    width: 171px;*/
+        /*    border: 1px solid rgba(0, 0, 0, .2);*/
+        /*    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);*/
+        /*    padding: 5px 0;*/
+        /*    font-size: 18px;*/
+        /*    line-height: 20px;*/
+        /*    color: #333;*/
+        /*}*/
+
+        /*.con::before {*/
+        /*    content: '';*/
+        /*    width: 0;*/
+        /*    height: 0;*/
+        /*    position: absolute;*/
+        /*    top: 28px;*/
+        /*    left: 18px;*/
+        /*    border: 8px solid #000;*/
+        /*    border-style: solid dashed dashed;*/
+        /*    border-color: #fff transparent transparent;*/
+        /*}*/
+
+    </style>
+    <script src="js/vuejs-2.5.16.js"></script>
+</head>
+<body>
+    <div id="app" class="search">
+        <div class="convue" :style="{display:showDisplay}" v-html="showProductNumber">123</div>
+        <input type="text" v-model="productNumber" placeholder="请输入您的快递单号vue"
+               @keyup="keyUpFun($event)" @focus="focusFun($event)" @blur="blurFun($event)">
+    </div>
+    <br/>
+    <!--
+    <div class="search">
+        <div class="con">123</div>
+        <input type="text" placeholder="请输入您的快递单号" clas="jd">
+    </div>-->
+</body>
+<script>
+    //vue
+    //keydown>keypress>keyup
+    //1.onkeyup某个键盘按键被松开时触发
+    //2.onkeydown某个键盘按键被按下时触发
+    //3.onkeypress某个键盘按键被按下时触发︰但是它不识别功能键比如ctrl shift箭头等
+    new Vue({
+        el:"#app",
+        data:{
+            productNumber:'',
+            showProductNumber:'',
+            showDisplay:'none'
+        },
+        methods:{
+            keyUpFun:function (event){
+                if (this.productNumber == '') {
+                    this.showDisplay = 'none';
+                } else {
+                    this.showDisplay = 'block';
+                    //把快递单号里面的值获取过来赋值给 con盒子做为内容
+                    //con.innerHTML = this.value;
+                    this.showProductNumber = this.productNumber;
+                }
+            },
+            focusFun:function (event){
+                if (this.productNumber !== '') {
+                    this.showDisplay = 'block';
+                }
+            },
+            blurFun:function (event){
+                this.showDisplay = 'none';
+            }
+        }
+    });
+
+    //js
+    //获取元素
+    // var con = document.querySelector('.con');
+    // var jd_input = document.querySelector('.jd');
+    // 表单检测用户输入： 给表单添加键盘事件
+    // jd_input.addEventListener('keyup', function () {
+    //     //判断搜索框内容是否为空
+    //     if (this.value == '') {
+    //         con.style.display = 'none';
+    //     } else {
+    //         con.style.display = 'block';
+    //         //把快递单号里面的值获取过来赋值给 con盒子做为内容
+    //         con.innerHTML = this.value;
+    //     }
+    // })
+    // 当我们失去焦点，就隐藏这个con盒子
+    // jd_input.addEventListener('blur', function () {
+    //     con.style.display = 'none';
+    // })
+    // 当我们获得焦点，就显示这个con盒子
+    // jd_input.addEventListener('focus', function () {
+    //     if (this.value !== '') {
+    //         con.style.display = 'block';
+    //     }
+    // })
+</script>
+</html>
