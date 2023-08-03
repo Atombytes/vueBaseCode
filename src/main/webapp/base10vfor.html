@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for</title>
+    <script src="js/vuejs-2.5.16.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--遍历数值数组 index为索引-->
+        <ol>
+            <li v-for="(item,index) in numarr">{{item}}--{{index}}</li>
+        </ol>
+        <!--遍历对象 index相当于对象属性名 item为对象属性值-->
+        <ol>
+            <li v-for="(item,index) in product">{{item}}--{{index}}</li>
+        </ol>
+        <!--遍历对象数组 每显示一行即一个对象内容 index为索引-->
+        <table border="1px">
+            <tr>
+                <td>产品编号</td>
+                <td>价格</td>
+            </tr>
+            <tr v-for="(item,index) in products">
+                <td>{{item.productNumber}}---{{index}}</td>
+                <td>{{item.price}}---{{index}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            numarr:[1,2,3,4,5,6,7],
+            product:{
+                productNumber: 123,
+                price:56
+            },
+            products:[{productNumber:456,price:67},{productNumber:567,price:78},{productNumber:678,price:89}]
+        },
+        methods:{
+
+        }
+    });
+</script>
+</html>

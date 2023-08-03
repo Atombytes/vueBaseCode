@@ -1,59 +1,60 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on:mouseoverout</title>
+    <style>
+        div {
+            background-color: red;
+            width:300px;
+            height:300px;
+        }
+    </style>
+</head>
+<script src="js/vuejs-2.5.16.js"></script>
+<body>
+    <!--
+    <div id="app" v-on:mouseover="divmouseoverFun($event)" v-on:mouseout="divmouseoutFun()">
+        <textarea v-on:mouseover="textareamouseoverFun($event)" v-on:mouseout="textareamouseoutFun($event)">{{message}}</textarea>
+    </div> -->
 
-	<head>
-		<meta charset="utf-8" />
-		<title>v-on:mouseover</title>
-		<style>
-			#div {
-				background-color: red;
-				width:300px;
-				height:300px;
-			}
-		</style>
-		<script src="js/vuejs-2.5.16.js"></script>
-	</head>
+    <div id="app" @mouseover="divmouseoverFun($event)" @mouseout="divmouseoutFun()">
+        <textarea @mouseover="textareamouseoverFun($event)" @mouseout="textareamouseoutFun($event)">{{message}}</textarea>
+    </div>
+</body>
+<script>
+    //鼠标移入移出事件 上层元素的事件效果会传播到下层元素 即上层元素移入移出事件 不仅调用自身的绑定方法 还会调用上层的绑定方法
+    //阻止上层元素行为传播到下层元素行为
+    new Vue({
+        el:"#app",
+        data:{
+            divmessage:"this is a div!",
+            leavediv:"leave div!",
+            message:"this is a textarea!",
+            leavetextarea:"leave textarea!"
+        },
+        methods:{
+            divmouseoverFun:function (event){
+                console.log(event);
+                alert(this.divmessage);
+            },
+            textareamouseoverFun:function (event){
+                console.log(event);
+                alert(this.message);
+                event.stopPropagation();
+            },
+            divmouseoutFun:function (){
+                alert(this.leavediv);
+            },
+            textareamouseoutFun:function (event){
+                alert(this.leavetextarea);
+                event.stopPropagation();
+            }
+        }
+    });
 
-	<body>
-		<div id="app">
-			<div @mouseover="fun1" id="div">
-				<textarea @mouseover="fun2($event)">这是一个文件域</textarea>
-			</div>
-
-			<!--<div onmouseover="divmouseover()" id="div">
-				<textarea onmouseover="textareamouseover()">这是一个文件域</textarea>
-			</div>-->
-		</div>
-	</body>
-	<script>
-		//view model
-        /**
-		 * @事件名称  就是  v-on:事件名称的简写方式
-		 * @mouseover它就等同于v-on:mouseover
-         */
-		new Vue({
-			el:"#app",
-			methods:{
-				fun1:function(){
-				    alert("鼠标悬停在div上了");
-				},
-				fun2:function(event){
-				    alert("鼠标悬停在textarea上了");
-                    event.stopPropagation();
-				}
-			}
-		});
-
-
-		//传统的js方式
-		function divmouseover(){
-		    alert("鼠标移动到了div上了");
-		}
-
-		function textareamouseover(){
-		    alert("鼠标移动到了textarea上了");
-		    event.stopPropagation();
-		}
-	</script>
-
+</script>
 </html>

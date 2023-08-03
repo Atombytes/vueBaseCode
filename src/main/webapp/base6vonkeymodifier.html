@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on:按键修饰符</title>
+    <script src="js/vuejs-2.5.16.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" :placeholder="placeholdermessage" @keydown.enter="keydownFunc()"/>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            placeholdermessage:"请输入回车"
+        },
+        methods:{
+            keydownFunc:function (){
+                console.log("key down the enter!")
+            }
+        }
+    });
+
+</script>
+</html>

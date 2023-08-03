@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if与v-show</title>
+    <script src="js/vuejs-2.5.16.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--v-if及v-elseif及v-else直接移除标签内容-->
+        <span v-if="swapflag">{{spanmessage}}</span>
+        <span v-else>{{swapmessage}}</span>
+        <button @click="swapFunc()">{{swap}}</button><br/>
+
+        <!--v-show标签一直在 只是更新display属性值为none或者block-->
+        <span v-show="swapflag">{{spanmessage}}</span>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            spanmessage:"message1",
+            swapmessage:"message1 swap!",
+            swapflag:false,
+            swap:"切换"
+        },
+        methods:{
+            swapFunc:function (){
+                this.swapflag = !this.swapflag;
+            }
+        }
+    });
+</script>
+</html>

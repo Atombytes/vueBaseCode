@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind的使用</title>
+    <script src="js/vuejs-2.5.16.js"></script>
+</head>
+<body>
+    <div id="app">
+        <label :style="lablestyle"><font :size="size1" :color="color1">{{message}}</font></label>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            lablestyle:{
+                width: '200px',
+                height: '100px'
+            },
+            message:"name",
+            size1:5,
+            color1:"red"
+        },
+        methods:{
+
+        }
+    })
+</script>
+</html>

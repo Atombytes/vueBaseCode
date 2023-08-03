@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on:事件修饰符</title>
+    <style>
+        #area {
+            background-color: red;
+            width:300px;
+            height:300px;
+        }
+    </style>
+    <script src="js/vuejs-2.5.16.js"></script>
+</head>
+<body>
+    <div id="app">
+        <form action="http://www.baidu.com/" method="post" @submit.prevent="submitprevent()">
+            <input type="submit" value="提交"/>
+        </form>
+
+        <div id="area" @mouseover="mouseoverFunc($event)">
+            <textarea @mouseover.stop="textareamouseoverFunc($event)">{{message}}</textarea>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+       el:"#app",
+       data:{
+           divmessage: "this is a div!",
+           message:"this is a textarea!",
+           preventmessage:"prevent jump"
+       },
+       methods:{
+           submitprevent:function (){
+             console.log(this.preventmessage);
+           },
+           mouseoverFunc:function (event){
+               console.log(this.divmessage);
+           },
+           textareamouseoverFunc:function (event){
+               console.log(this.message);
+           }
+       }
+    });
+</script>
+</html>
